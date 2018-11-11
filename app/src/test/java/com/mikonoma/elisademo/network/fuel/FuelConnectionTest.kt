@@ -25,7 +25,7 @@ class FuelConnectionTest : HttpTestBase() {
                 .withHeader("foobar", "foo", "bar"))
 
         val request = ENWRequest(url + "/foo")
-        val response = FuelConnection.execute(request)
+        val response = FuelConnection().execute(request)
 
         assertThat(response.code, equalTo(200))
         assertThat(response.body?.reader()?.readText(), equalTo("diiba daaba"))

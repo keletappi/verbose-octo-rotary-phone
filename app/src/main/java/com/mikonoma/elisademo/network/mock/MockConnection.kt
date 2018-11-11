@@ -4,9 +4,10 @@ import com.mikonoma.elisademo.network.ENWConnection
 import com.mikonoma.elisademo.network.ENWRequest
 import com.mikonoma.elisademo.network.ENWResponse
 import com.mikonoma.elisademo.persistence.mock.MockResponseDao
+import javax.inject.Inject
 
-class MockConnection(val responseDao: MockResponseDao) : ENWConnection {
 
+class MockConnection @Inject constructor (val responseDao: MockResponseDao) : ENWConnection {
     val notFound = ENWResponse(404,
         "Mocked response not found.")
 

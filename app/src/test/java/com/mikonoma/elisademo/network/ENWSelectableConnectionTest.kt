@@ -1,7 +1,7 @@
 package com.mikonoma.elisademo.network
 
 import android.content.SharedPreferences
-import com.mikonoma.elisademo.PREF_NETWORK_IMPLEMENTATION
+import com.mikonoma.elisademo.PREF_KEY_CONNECTION_IMPLEMENTATION
 import com.nhaarman.mockitokotlin2.*
 import org.hamcrest.CoreMatchers.equalTo
 import org.hamcrest.MatcherAssert.assertThat
@@ -29,7 +29,7 @@ class ENWSelectableConnectionTest {
         var connectionPreference: String? = null
 
         val mockPrefs = mock<SharedPreferences>() {
-            on { getString(PREF_NETWORK_IMPLEMENTATION, null) } doAnswer { connectionPreference }
+            on { getString(PREF_KEY_CONNECTION_IMPLEMENTATION, null) } doAnswer { connectionPreference }
         }
 
         val testedConnection = ENWSelectableConnection(

@@ -1,14 +1,12 @@
 package com.mikonoma.elisademo.persistence.mock
 
 import android.arch.persistence.room.*
-import com.mikonoma.elisademo.network.ENWResponse
 
 @Entity(tableName = "mock_responses")
 data class MockResponseData(
-    @PrimaryKey var url: String = "",
-    @ColumnInfo var body: String = "") {
+    @PrimaryKey var url: String,
+    @ColumnInfo var body: String)
 
-}
 
 @Entity(tableName = "mock_headers",
     foreignKeys = arrayOf(ForeignKey(
@@ -19,18 +17,17 @@ data class MockResponseData(
     ))
 )
 data class MockResponseHeader(
-    @PrimaryKey(autoGenerate = true) val id: Long = 0,
-    @ColumnInfo var url: String = "",
-    @ColumnInfo var key: String = "",
-    @ColumnInfo var value: String = ""
+    @PrimaryKey(autoGenerate = true) val id: Long,
+    @ColumnInfo var url: String,
+    @ColumnInfo var key: String,
+    @ColumnInfo var value: String
 )
-
 
 @Dao
 interface MockResponseDao {
 
     @Query("SELECT * FROM mock_responses WHERE url LIKE :url")
-    fun get(url: String)
+    fun get(url: String): MockResponseData
 
     @Query("SELECT * FROM mock_responses")
     fun getAll(): List<MockResponseData>

@@ -1,7 +1,7 @@
 package com.mikonoma.elisademo.network
 
 import android.content.SharedPreferences
-import com.mikonoma.elisademo.PREF_NETWORK_IMPLEMENTATION
+import com.mikonoma.elisademo.PREF_KEY_CONNECTION_IMPLEMENTATION
 
 /**
  * Selects the network connection implementation used based on user preferences.
@@ -15,7 +15,7 @@ class ENWSelectableConnection(private val prefs: SharedPreferences,
                               private val default: ENWConnection) : ENWConnection {
 
     override fun execute(request: ENWRequest): ENWResponse {
-        val userPreference = prefs.getString(PREF_NETWORK_IMPLEMENTATION, null)
+        val userPreference = prefs.getString(PREF_KEY_CONNECTION_IMPLEMENTATION, null)
         return selectImplementation(userPreference).execute(request)
     }
 
