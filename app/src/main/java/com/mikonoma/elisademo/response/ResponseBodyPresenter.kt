@@ -16,9 +16,11 @@ class ResponseBodyPresenter @Inject constructor() {
     fun showHttpResponseBody(response: ENWResponse) {
         if (isImage(response)) {
             activity.response_image.visibility = View.VISIBLE
+            activity.response_body_text.visibility = View.GONE
             showResponseAsImage(response.body)
         } else {
             activity.response_image.visibility = View.GONE
+            activity.response_body_text.visibility = View.VISIBLE
             showResponseAsText(response.body)
         }
     }
