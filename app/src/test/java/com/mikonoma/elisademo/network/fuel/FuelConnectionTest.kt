@@ -2,6 +2,7 @@ package com.mikonoma.elisademo.network.fuel
 
 import com.mikonoma.elisademo.network.ENWRequest
 import com.mikonoma.elisademo.network.HttpTestBase
+import kotlinx.coroutines.runBlocking
 import org.hamcrest.CoreMatchers.equalTo
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.Matchers.containsInAnyOrder
@@ -25,7 +26,7 @@ class FuelConnectionTest : HttpTestBase() {
                 .withHeader("foobar", "foo", "bar"))
 
         val request = ENWRequest(url + "/foo")
-        val response = FuelConnection().execute(request)
+        val response = runBlocking{ FuelConnection().execute(request) }
 
         assertThat(response.code, equalTo(200))
         assertThat(response.body?.reader()?.readText(), equalTo("diiba daaba"))

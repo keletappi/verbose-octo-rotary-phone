@@ -1,6 +1,6 @@
 package com.mikonoma.elisademo.persistence.mock
 
-import android.arch.persistence.room.*
+import androidx.room.*
 
 @Entity(tableName = "mock_responses")
 data class MockResponseData(

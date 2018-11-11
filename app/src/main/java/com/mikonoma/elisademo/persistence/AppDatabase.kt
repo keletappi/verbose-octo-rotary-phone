@@ -1,7 +1,7 @@
 package com.mikonoma.elisademo.persistence
 
-import android.arch.persistence.room.RoomDatabase
-import android.arch.persistence.room.Database
+import androidx.room.RoomDatabase
+import androidx.room.Database
 import com.mikonoma.elisademo.persistence.mock.MockResponseDao
 import com.mikonoma.elisademo.persistence.mock.MockResponseData
 

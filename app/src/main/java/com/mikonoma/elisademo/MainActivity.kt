@@ -1,10 +1,10 @@
 package com.mikonoma.elisademo
 
 import android.os.Bundle
-import android.support.annotation.UiThread
-import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.View
+import androidx.annotation.UiThread
+import androidx.appcompat.app.AppCompatActivity
 import com.mikonoma.elisademo.network.ENWConnection
 import com.mikonoma.elisademo.network.ENWRequest
 import com.mikonoma.elisademo.network.ENWResponse
@@ -33,26 +33,25 @@ class MainActivity : AppCompatActivity() {
         component.inject(this)
 
         goButton.setOnClickListener { view -> run {
-//            disableInput()
             executeRequest()
-//            enableInput()
         }}
     }
 
     @UiThread
     private fun executeRequest() {
-        val url: String = urlInput.text.toString()
+        disableInput()
+
+        val requestUrl: String = urlInput.text.toString()
         CoroutineScope(Dispatchers.IO).launch {
-            val response = fetch(url)
+            val response = fetch(requestUrl)
             Log.d("MainActivity", "Response received (" + response + ")")
             withContext(Dispatchers.Main) {
                 no_data.visibility = View.GONE
+                enableInput()
                 responsePresenter.showResponse(response)
             }
-
         }
     }
-
 
     @UiThread
     private suspend fun fetch(url: String): ENWResponse {

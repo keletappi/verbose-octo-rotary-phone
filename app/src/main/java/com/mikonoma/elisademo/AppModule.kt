@@ -1,6 +1,6 @@
 package com.mikonoma.elisademo
 
-import android.arch.persistence.room.Room
+import androidx.room.Room
 import android.content.Context
 import com.mikonoma.elisademo.network.ENWConnection
 import com.mikonoma.elisademo.network.ENWSelectableConnection

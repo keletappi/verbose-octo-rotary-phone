@@ -2,7 +2,7 @@ package com.mikonoma.elisademo
 
 import android.content.ContentValues.TAG
 import android.graphics.BitmapFactory
-import android.support.annotation.UiThread
+import androidx.annotation.UiThread
 import android.util.Log
 import android.view.View
 import com.mikonoma.elisademo.network.ENWResponse
