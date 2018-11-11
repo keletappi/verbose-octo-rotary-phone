@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.mikonoma.elisademo.network.ENWConnection
 import com.mikonoma.elisademo.network.ENWRequest
 import com.mikonoma.elisademo.network.ENWResponse
+import com.mikonoma.elisademo.response.ResponsePresenter
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.url_input_header.*
 import kotlinx.coroutines.CoroutineScope
@@ -48,7 +49,7 @@ class MainActivity : AppCompatActivity() {
             withContext(Dispatchers.Main) {
                 no_data.visibility = View.GONE
                 enableInput()
-                responsePresenter.showResponse(response)
+                responsePresenter.present(response)
             }
         }
     }

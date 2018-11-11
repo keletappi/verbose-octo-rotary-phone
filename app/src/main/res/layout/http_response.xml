@@ -2,7 +2,9 @@
 <androidx.constraintlayout.widget.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
 
     <LinearLayout
             android:id="@+id/response_container"
@@ -10,12 +12,47 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-        <TextView android:id="@+id/response_headers"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content" />
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+            <TextView
+                    android:id="@+id/header_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/headers_title"
+                    android:textColor="@color/headers_title_text"
+                    android:gravity="start"
+                    android:padding="8dp"
+                    style="@style/TextAppearance.MaterialComponents.Headline6"
+                    android:background="@color/headers_title_background"
+                    android:drawableEnd="@drawable/ic_expand_more_black"
+                    />
+
+
+            <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <at.blogc.android.views.ExpandableTextView
+                        android:padding="8dp"
+                        android:id="@+id/response_headers_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:maxLines="0"
+                        android:ellipsize="end"
+                        android:typeface="monospace"
+                        app:animation_duration="350"/>
+            </HorizontalScrollView>
+
+        </LinearLayout>
+
 
         <View android:layout_width="match_parent"
               android:layout_height="1dp"
+              android:layout_marginTop="8dp"
+              android:layout_marginBottom="8dp"
               android:background="@color/colorPrimaryDark"/>
 
         <HorizontalScrollView
@@ -28,11 +65,13 @@
                     android:orientation="vertical">
 
                 <ImageView
+                        android:padding="8dp"
                         android:id="@+id/response_image"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         />
                 <TextView android:id="@+id/response_body_text"
+                          android:padding="8dp"
                           android:typeface="monospace"
                           android:layout_width="wrap_content"
                           android:layout_height="wrap_content" />

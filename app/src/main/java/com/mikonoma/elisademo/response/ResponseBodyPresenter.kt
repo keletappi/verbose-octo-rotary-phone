@@ -1,40 +1,19 @@
-package com.mikonoma.elisademo
+package com.mikonoma.elisademo.response
 
-import android.content.ContentValues.TAG
 import android.graphics.BitmapFactory
-import android.util.Log
 import android.view.View
-import androidx.annotation.UiThread
+import com.mikonoma.elisademo.MainActivity
 import com.mikonoma.elisademo.network.ENWResponse
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.error_response.*
 import kotlinx.android.synthetic.main.http_response.*
 import java.io.InputStream
 import javax.inject.Inject
 
-
-class ResponsePresenter @Inject constructor () {
+class ResponseBodyPresenter @Inject constructor() {
 
     lateinit var activity: MainActivity
         @Inject set
 
-    @UiThread
-    fun showResponse(response: ENWResponse) {
-        if (response.hasError) {
-            showError(response)
-        } else {
-            showHttpResponseHeaders(response.headers)
-            showHttpResponseBody(response)
-        }
-    }
-
-    private fun showHttpResponseHeaders(headers: Map<String, List<String>>) {
-        Log.d(TAG, "TODO: implement showHttpResponseHeaders")
-    }
-
-    private fun showHttpResponseBody(response: ENWResponse) {
-        activity.error_response_container.visibility = View.GONE
-        activity.http_response_container.visibility = View.VISIBLE
+    fun showHttpResponseBody(response: ENWResponse) {
 
         if (isImage(response)) {
             activity.response_image.visibility = View.VISIBLE
@@ -60,11 +39,5 @@ class ResponsePresenter @Inject constructor () {
         body.reset()
         val bm = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
         activity.response_image.setImageBitmap(bm)
-    }
-
-    private fun showError(response: ENWResponse) {
-        activity.http_response_container.visibility = View.GONE
-        activity.error_response_container.visibility = View.VISIBLE
-        activity.error_message.text = response.error!!.exception.toString()
     }
 }
