@@ -4,7 +4,7 @@ import java.io.InputStream
 import java.util.Collections.emptyMap
 
 interface ENWConnection {
-    fun execute(request: ENWRequest) : ENWResponse
+    suspend fun execute(request: ENWRequest) : ENWResponse
 }
 
 data class ENWRequest(val URL: String)

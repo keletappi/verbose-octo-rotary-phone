@@ -14,7 +14,7 @@ class ENWSelectableConnection(private val prefs: SharedPreferences,
                               private val implementations: Map<String, ENWConnection>,
                               private val default: ENWConnection) : ENWConnection {
 
-    override fun execute(request: ENWRequest): ENWResponse {
+    override suspend fun execute(request: ENWRequest): ENWResponse {
         val userPreference = prefs.getString(PREF_KEY_CONNECTION_IMPLEMENTATION, null)
         return selectImplementation(userPreference).execute(request)
     }

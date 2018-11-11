@@ -1,11 +1,15 @@
 package com.mikonoma.elisademo
 
+import android.app.Activity
 import android.app.Application
 import com.mikonoma.elisademo.network.ENWConnection
 import com.mikonoma.elisademo.network.fuel.FuelConnection
 import com.mikonoma.elisademo.network.mock.MockConnection
 import com.mikonoma.elisademo.persistence.AppDatabase
 import javax.inject.Inject
+
+val Activity.app: ENWApplication
+    get() = application as ENWApplication
 
 class ENWApplication : Application() {
 

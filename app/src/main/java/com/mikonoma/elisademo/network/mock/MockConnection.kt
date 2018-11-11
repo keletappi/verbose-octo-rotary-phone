@@ -1,5 +1,6 @@
 package com.mikonoma.elisademo.network.mock
 
+import android.util.Log
 import com.mikonoma.elisademo.network.ENWConnection
 import com.mikonoma.elisademo.network.ENWRequest
 import com.mikonoma.elisademo.network.ENWResponse
@@ -11,12 +12,9 @@ class MockConnection @Inject constructor (val responseDao: MockResponseDao) : EN
     val notFound = ENWResponse(404,
         "Mocked response not found.")
 
-    override fun execute(request: ENWRequest): ENWResponse {
-
-        responseDao.get(request.URL)
-
-
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override suspend fun execute(request: ENWRequest): ENWResponse {
+        Log.w("MockConnection", "TODO: Implement mock connection support")
+        return notFound
     }
 
 }

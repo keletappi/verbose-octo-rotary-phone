@@ -2,6 +2,7 @@ package com.mikonoma.elisademo
 
 import android.arch.persistence.room.Room
 import android.content.Context
+import com.mikonoma.elisademo.network.ENWConnection
 import com.mikonoma.elisademo.network.ENWSelectableConnection
 import com.mikonoma.elisademo.persistence.AppDatabase
 import dagger.Component
@@ -25,7 +26,7 @@ class AppModule(val app: ENWApplication) {
     fun provideMockResponseDao() = app.db.responseDao()
 
     @Provides @Singleton
-    fun provideConnection() = ENWSelectableConnection(
+    fun provideConnection(): ENWConnection = ENWSelectableConnection(
         app.getSharedPreferences("prefs", Context.MODE_PRIVATE),
         app.connectionImplementations,
         app.fuelConnection
@@ -36,4 +37,6 @@ class AppModule(val app: ENWApplication) {
 @Component(modules = arrayOf(AppModule::class))
 interface AppComponent {
     fun inject(app: ENWApplication)
+
+    fun plus(homeModule: MainActivityModule): MainActivityComponent
 }

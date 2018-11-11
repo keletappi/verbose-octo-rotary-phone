@@ -8,7 +8,7 @@ import com.mikonoma.elisademo.network.ENWResponse
 import javax.inject.Inject
 
 class FuelConnection @Inject constructor () : ENWConnection {
-    override fun execute(request: ENWRequest): ENWResponse {
+    override suspend fun execute(request: ENWRequest): ENWResponse {
         val (fuelRequest, fuelResponse, fuelResult) = request.URL.httpGet().response()
         val (resultBytes, resultError) = fuelResult
         return ENWResponse(
