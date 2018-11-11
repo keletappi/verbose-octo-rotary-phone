@@ -20,7 +20,7 @@ class FuelConnection @Inject constructor () : ENWConnection {
         val (resultBytes, resultError) = fuelResult
         return ENWResponse(
             fuelResponse.statusCode,
-            resultBytes,
+            resultBytes?: ByteArray(0),
             fuelResponse.headers,
             when (resultError) {
                 null -> null

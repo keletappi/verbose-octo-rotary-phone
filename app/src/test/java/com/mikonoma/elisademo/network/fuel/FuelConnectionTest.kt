@@ -1,5 +1,6 @@
 package com.mikonoma.elisademo.network.fuel
 
+import com.mikonoma.elisademo.asUTF8String
 import com.mikonoma.elisademo.network.ENWRequest
 import com.mikonoma.elisademo.network.HttpTestBase
 import kotlinx.coroutines.runBlocking
@@ -29,7 +30,7 @@ class FuelConnectionTest : HttpTestBase() {
         val response = runBlocking{ FuelConnection().execute(request) }
 
         assertThat(response.code, equalTo(200))
-        assertThat(response.body?.reader()?.readText(), equalTo("diiba daaba"))
+        assertThat(response.body.asUTF8String(), equalTo("diiba daaba"))
         assertThat(response.headers["foobar"], containsInAnyOrder("foo", "bar"))
 
         mockServer?.verify(HttpRequest.request()
@@ -40,3 +41,5 @@ class FuelConnectionTest : HttpTestBase() {
 
 
 }
+
+
