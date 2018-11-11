@@ -16,8 +16,7 @@ class ResponseHeaderPresenter @Inject constructor() {
         activity.response_headers_text.setOnClickListener { activity.response_headers_text.toggle() }
     }
 
-    fun showHttpResponseHeaders(response: ENWResponse) {
-
+    fun present(response: ENWResponse) {
         val buffer = StringBuffer()
         buffer.append("${response.code} / ${response.message}\n\n")
         for (entry in response.headers) {
@@ -26,7 +25,4 @@ class ResponseHeaderPresenter @Inject constructor() {
         activity.response_headers_text.text = buffer.toString()
     }
 
-    fun showHttpResponseHeaders() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
 }

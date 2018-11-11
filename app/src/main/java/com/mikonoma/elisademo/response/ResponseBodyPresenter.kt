@@ -13,7 +13,7 @@ class ResponseBodyPresenter @Inject constructor() {
     lateinit var activity: MainActivity
         @Inject set
 
-    fun showHttpResponseBody(response: ENWResponse) {
+    fun present(response: ENWResponse) {
         if (isImage(response)) {
             activity.response_image.visibility = View.VISIBLE
             activity.response_body_text.visibility = View.GONE
