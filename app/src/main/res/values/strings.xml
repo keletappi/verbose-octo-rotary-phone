@@ -5,4 +5,5 @@
     <string name="no_data">No data yet. Make a response to see something.</string>
     <string name="error_title">Error!</string>
     <string name="headers_title">Response Headers</string>
+    <string name="contentDesc_response_image">Downloaded image</string>
 </resources>

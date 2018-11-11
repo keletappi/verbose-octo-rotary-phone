@@ -9,6 +9,4 @@
     <color name="headers_title_background">@color/grey_200</color>
     <color name="headers_title_text">@color/black</color>
 
-    <color name="content_title_background">@color/green_700</color>
-    <color name="content_title_text">@color/white</color>
 </resources>
