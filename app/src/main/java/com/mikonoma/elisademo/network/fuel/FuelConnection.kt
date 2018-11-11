@@ -9,7 +9,14 @@ import javax.inject.Inject
 
 class FuelConnection @Inject constructor () : ENWConnection {
     override suspend fun execute(request: ENWRequest): ENWResponse {
-        val (fuelRequest, fuelResponse, fuelResult) = request.URL.httpGet().response()
+        val (fuelRequest, fuelResponse, fuelResult) = try {
+            request.URL.httpGet().response()
+        } catch (e: Exception) {
+            return ENWResponse(code = -1,
+                body = "",
+                error = ENWError(e)
+            )
+        }
         val (resultBytes, resultError) = fuelResult
         return ENWResponse(
             fuelResponse.statusCode,
