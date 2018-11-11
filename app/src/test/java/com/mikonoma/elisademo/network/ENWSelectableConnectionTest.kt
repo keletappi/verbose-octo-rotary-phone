@@ -27,9 +27,9 @@ class ENWSelectableConnectionTest {
     fun testExecuteSelectsCorrectImplementation() {
         val request = ENWRequest("test_url://rairai")
 
-        val fooResponse = ENWResponse(200, "foo")
-        val barResponse = ENWResponse(200, "bar")
-        val defaultResponse = ENWResponse(200, "def")
+        val fooResponse = ENWResponse(200, "OK", "foo")
+        val barResponse = ENWResponse(200, "OK", "bar")
+        val defaultResponse = ENWResponse(200, "OK", "default")
 
         val fooConnection = mock<SuspendableENWConnection> { on { execute(any()) } doReturn fooResponse}
         val barConnection = mock<SuspendableENWConnection> { on { execute(any()) } doReturn barResponse}

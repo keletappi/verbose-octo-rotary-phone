@@ -33,7 +33,7 @@ class ResponsePresenter @Inject constructor () {
         activity.error_response_container.visibility = View.GONE
         activity.http_response_container.visibility = View.VISIBLE
 
-        headerPresenter.showHttpResponseHeaders(response.headers)
+        headerPresenter.showHttpResponseHeaders(response)
         bodyPresenter.showHttpResponseBody(response)
     }
 

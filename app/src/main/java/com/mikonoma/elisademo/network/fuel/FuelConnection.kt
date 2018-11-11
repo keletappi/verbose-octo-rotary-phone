@@ -13,6 +13,7 @@ class FuelConnection @Inject constructor () : ENWConnection {
             request.URL.httpGet().response()
         } catch (e: Exception) {
             return ENWResponse(code = -1,
+                message="error",
                 body = "",
                 error = ENWError(e)
             )
@@ -20,6 +21,7 @@ class FuelConnection @Inject constructor () : ENWConnection {
         val (resultBytes, resultError) = fuelResult
         return ENWResponse(
             fuelResponse.statusCode,
+            fuelResponse.responseMessage,
             resultBytes?: ByteArray(0),
             fuelResponse.headers,
             when (resultError) {

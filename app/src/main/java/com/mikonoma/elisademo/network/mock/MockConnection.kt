@@ -10,6 +10,7 @@ import javax.inject.Inject
 
 class MockConnection @Inject constructor (val responseDao: MockResponseDao) : ENWConnection {
     val notFound = ENWResponse(404,
+        "Not Found",
         "Mocked response not found.")
 
     override suspend fun execute(request: ENWRequest): ENWResponse {
