@@ -10,9 +10,7 @@ import java.io.InputStream
 
 class MockConnection(val responseDao: MockResponseDao) : ENWConnection {
 
-    val notFound = ENWResponse(404,
-        ByteArrayInputStream("Mocked response not found.".toByteArray())
-    )
+    val notFound = ENWResponse(404, "Mocked response not found.")
 
     override fun execute(request: ENWRequest): ENWResponse {
 
