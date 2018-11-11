@@ -2,9 +2,9 @@ package com.mikonoma.elisademo.network
 
 import android.content.SharedPreferences
 import com.mikonoma.elisademo.PREF_NETWORK_IMPLEMENTATION
-import com.natpryce.hamkrest.assertion.assertThat
-import com.natpryce.hamkrest.equalTo
 import com.nhaarman.mockitokotlin2.*
+import org.hamcrest.CoreMatchers.equalTo
+import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Test
 
 class ENWSelectableConnectionTest {

@@ -1,6 +1,5 @@
 package com.mikonoma.elisademo.network
 
-import java.io.ByteArrayInputStream
 import java.io.InputStream
 import java.util.Collections.emptyMap
 
@@ -13,17 +12,27 @@ data class ENWRequest(val URL: String)
 data class ENWResponse(val code: Int?,
                        val body: InputStream?,
                        val headers: Map<String, List<String>> = emptyMap(),
-                       val error: ENWError?) {
+                       val error: ENWError? = null) {
+
     constructor(code: Int,
-                body: String = "",
-                headers: Map<String, String> = emptyMap()) :
+                body: ByteArray?,
+                headers: Map<String, List<String>> = emptyMap(),
+                error: ENWError? = null) :
             this(code,
-                ByteArrayInputStream(body.toByteArray()),
-                hashMapOf<String, List<String>>(
-                    *(headers.entries.map { it -> it.key to arrayListOf<String>(it.value) }.toTypedArray())
-                ),
-                null
-        )
+                body?.inputStream(),
+                headers,
+                error
+            )
+
+    constructor(code: Int,
+                body: String?,
+                headers: Map<String, List<String>> = emptyMap(),
+                error: ENWError? = null) :
+            this(code,
+                body?.byteInputStream(),
+                headers,
+                error)
+
 }
 
 data class ENWError(val exception: Exception?)

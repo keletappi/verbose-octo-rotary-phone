@@ -8,14 +8,15 @@ import com.mikonoma.elisademo.network.ENWResponse
 
 object FuelConnection : ENWConnection {
     override fun execute(request: ENWRequest): ENWResponse {
-        val (fuelRequest, fuelResponse, fuelResult) = request.URL.httpGet().responseString()
+        val (fuelRequest, fuelResponse, fuelResult) = request.URL.httpGet().response()
+        val (resultBytes, resultError) = fuelResult
         return ENWResponse(
             fuelResponse.statusCode,
-            fuelResponse.dataStream,
+            resultBytes,
             fuelResponse.headers,
             when (fuelResult.component2()) {
                 null -> null
-                else -> ENWError(fuelResult.component2()?.exception)
+                else -> ENWError(resultError?.exception)
             }
         )
     }

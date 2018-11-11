@@ -2,8 +2,9 @@ package com.mikonoma.elisademo.network.fuel
 
 import com.mikonoma.elisademo.network.ENWRequest
 import com.mikonoma.elisademo.network.HttpTestBase
-import com.natpryce.hamkrest.assertion.assertThat
-import com.natpryce.hamkrest.equalTo
+import org.hamcrest.CoreMatchers.equalTo
+import org.hamcrest.MatcherAssert.assertThat
+import org.hamcrest.Matchers.containsInAnyOrder
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockserver.model.HttpRequest
@@ -27,10 +28,14 @@ class FuelConnectionTest : HttpTestBase() {
         val response = FuelConnection.execute(request)
 
         assertThat(response.code, equalTo(200))
+        assertThat(response.body?.reader()?.readText(), equalTo("diiba daaba"))
+        assertThat(response.headers["foobar"], containsInAnyOrder("foo", "bar"))
 
         mockServer?.verify(HttpRequest.request()
             .withMethod("GET")
             .withPath("/foo"))
 
     }
+
+
 }
