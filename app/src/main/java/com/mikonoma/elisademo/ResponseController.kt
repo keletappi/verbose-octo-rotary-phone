@@ -5,6 +5,7 @@ import android.view.View
 import com.mikonoma.elisademo.network.ENWResponse
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.error_response.*
+import kotlinx.android.synthetic.main.http_response.*
 import javax.inject.Inject
 
 class ResponseController @Inject constructor () {
@@ -22,7 +23,9 @@ class ResponseController @Inject constructor () {
     }
 
     private fun showHttpResponse(response: ENWResponse) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        activity.error_response_container.visibility = View.GONE
+        activity.http_response_container.visibility = View.VISIBLE
+        activity.response_body.text = response.body!!.reader().readText()
     }
 
     private fun showError(response: ENWResponse) {
@@ -30,6 +33,4 @@ class ResponseController @Inject constructor () {
         activity.error_response_container.visibility = View.VISIBLE
         activity.error_message.text = response.error!!.exception.toString()
     }
-
-
 }
