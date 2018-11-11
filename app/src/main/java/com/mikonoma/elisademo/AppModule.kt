@@ -38,5 +38,5 @@ class AppModule(val app: ENWApplication) {
 interface AppComponent {
     fun inject(app: ENWApplication)
 
-    fun plus(homeModule: MainActivityModule): MainActivityComponent
+    fun plus(mainActivityModule: MainActivityModule): MainActivityComponent
 }

@@ -4,12 +4,16 @@ import android.os.Bundle
 import android.support.annotation.UiThread
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import android.view.View
 import com.mikonoma.elisademo.network.ENWConnection
 import com.mikonoma.elisademo.network.ENWRequest
 import com.mikonoma.elisademo.network.ENWResponse
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.url_input_header.*
-import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
@@ -17,6 +21,9 @@ class MainActivity : AppCompatActivity() {
     val component by lazy { app.component.plus(MainActivityModule(this)) }
 
     lateinit var connection: ENWConnection
+        @Inject set
+
+    lateinit var responsePresenter: ResponseController
         @Inject set
 
 
@@ -34,18 +41,18 @@ class MainActivity : AppCompatActivity() {
 
     @UiThread
     private fun executeRequest() {
-
         val url: String = urlInput.text.toString()
-        GlobalScope.launch {
+        CoroutineScope(Dispatchers.IO).launch {
             val response = fetch(url)
-            show(response)
+            Log.d("MainActivity", "Response received (" + response + ")")
+            withContext(Dispatchers.Main) {
+                no_data.visibility = View.GONE
+                responsePresenter.showResponse(response)
+            }
+
         }
     }
 
-    @UiThread
-    private fun show(response: ENWResponse) {
-        Log.d("MainActivity", "TODO: Not implemented - show(" + response + ")")
-    }
 
     @UiThread
     private suspend fun fetch(url: String): ENWResponse {

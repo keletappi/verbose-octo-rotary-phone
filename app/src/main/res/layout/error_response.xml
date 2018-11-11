@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/error_title"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:padding="8dp"
+            style="@style/TextAppearance.MaterialComponents.Headline4"
+            android:background="@color/error_title_background"
+            />
+    
+    <TextView
+            android:id="@+id/error_message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            style="@style/TextAppearance.MaterialComponents.Body2"
+            tools:text="NullPointerException: bad thing happened."
+            />
+
+</LinearLayout>

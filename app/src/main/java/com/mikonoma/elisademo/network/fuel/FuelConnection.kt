@@ -22,9 +22,9 @@ class FuelConnection @Inject constructor () : ENWConnection {
             fuelResponse.statusCode,
             resultBytes,
             fuelResponse.headers,
-            when (fuelResult.component2()) {
+            when (resultError) {
                 null -> null
-                else -> ENWError(resultError?.exception)
+                else -> ENWError(resultError.exception)
             }
         )
     }

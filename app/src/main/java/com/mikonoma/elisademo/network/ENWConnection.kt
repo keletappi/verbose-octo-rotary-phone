@@ -14,6 +14,8 @@ data class ENWResponse(val code: Int?,
                        val headers: Map<String, List<String>> = emptyMap(),
                        val error: ENWError? = null) {
 
+    val hasError: Boolean = error != null
+
     constructor(code: Int,
                 body: ByteArray?,
                 headers: Map<String, List<String>> = emptyMap(),
@@ -35,4 +37,4 @@ data class ENWResponse(val code: Int?,
 
 }
 
-data class ENWError(val exception: Exception?)
+data class ENWError(val exception: Exception)
