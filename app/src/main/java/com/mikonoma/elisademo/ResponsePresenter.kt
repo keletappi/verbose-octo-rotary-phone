@@ -2,9 +2,9 @@ package com.mikonoma.elisademo
 
 import android.content.ContentValues.TAG
 import android.graphics.BitmapFactory
-import androidx.annotation.UiThread
 import android.util.Log
 import android.view.View
+import androidx.annotation.UiThread
 import com.mikonoma.elisademo.network.ENWResponse
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.error_response.*
@@ -13,7 +13,7 @@ import java.io.InputStream
 import javax.inject.Inject
 
 
-class ResponseController @Inject constructor () {
+class ResponsePresenter @Inject constructor () {
 
     lateinit var activity: MainActivity
         @Inject set

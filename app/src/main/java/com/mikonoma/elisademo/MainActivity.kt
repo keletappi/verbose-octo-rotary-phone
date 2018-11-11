@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var connection: ENWConnection
         @Inject set
 
-    lateinit var responsePresenter: ResponseController
+    lateinit var responsePresenter: ResponsePresenter
         @Inject set
 
 
